@@ -20,7 +20,6 @@ class Home extends Component {
   }
 
   doIt = (event) => {
-    event.preventDefault()
     const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
 
     superagent
@@ -29,9 +28,18 @@ class Home extends Component {
       .end()
   }
 
+  onItemDelete = ({uuid}) => {
+    const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
+    
+    superagent
+      .delete(`${credentialsDeviceUrl}/user-devices/${uuid}`)
+      .set('Authorization', `Bearer ${meshbluAuthBearer}`)
+      .end()
+  }
+
   renderUserDevices =  (userDevices) => {
-    return _.map(userDevices, (userDevice) => { 
-      return <UserDevice device={userDevice} />
+    return _.map(userDevices, (userDevice) => {
+      return <UserDevice key={userDevice.uuid} device={userDevice} onDelete={this.onItemDelete} />
     })
   }
 
@@ -43,9 +51,7 @@ class Home extends Component {
         <ul>
           {this.renderUserDevices(userDevices)}
         </ul>
-        <form>
-          <button onClick={this.doIt} type="submit">Do it</button>
-        </form>
+        <button onClick={this.doIt}>Do it</button>
       </div>
     )
   }
