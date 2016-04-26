@@ -6,11 +6,18 @@ import UserDevice from '../components/user-device'
 
 class Home extends Component {
   state = {}
-
-  componentDidMount(){
+  componentWillMount() {
     const {credentialsDeviceUrl,meshbluAuthBearer} = url.parse(location.href, true).query
     this.setState({credentialsDeviceUrl,meshbluAuthBearer})
+  }
 
+  componentDidMount(){
+    this.getUserDevices()
+  }
+
+  getUserDevices = () => {
+    const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
+    if(!credentialsDeviceUrl || !meshbluAuthBearer) return
     superagent
       .get(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
@@ -25,17 +32,18 @@ class Home extends Component {
     superagent
       .post(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
-      .end()
+      .end( () => this.getUserDevices() )
   }
 
   onItemDelete = ({uuid}) => {
     const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
-    
     superagent
       .delete(`${credentialsDeviceUrl}/user-devices/${uuid}`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
-      .end()
+      .end( () => this.getUserDevices() )
   }
+
+
 
   renderUserDevices =  (userDevices) => {
     return _.map(userDevices, (userDevice) => {
