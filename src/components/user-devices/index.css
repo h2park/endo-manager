@@ -1,0 +1,9 @@
+:local .empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+:local .empty > div {
+  width: 75%;
+}

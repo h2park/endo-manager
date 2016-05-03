@@ -1,0 +1,9 @@
+:local .actions {
+  margin-top: 10em;
+  display: flex;
+  justify-content: flex-start;
+}
+
+:local .actions Button {
+  margin-right: 1rem;
+}

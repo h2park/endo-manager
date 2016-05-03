@@ -1,5 +1,4 @@
-import React from 'react';
-// import styles from './index.css';
+import React from 'react'
 
 const UserDevice = ({device, onDelete}) => {
   const onClickDelete = () => onDelete(device)

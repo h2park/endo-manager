@@ -1,0 +1,15 @@
+:local .container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10rem;
+}
+
+:local .header {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+:local .logo  {
+  width:  100px;
+  height: 100px;
+}

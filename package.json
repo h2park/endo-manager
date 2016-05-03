@@ -34,7 +34,8 @@
     "react-dom": "^0.14.7",
     "react-router": "^2.0.1",
     "superagent": "^1.8.3",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "zooid-ui": "^5.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.4",
@@ -57,5 +58,8 @@
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.0",
     "webpack-hot-middleware": "^2.10.0"
+  },
+  "optionalDependencies": {
+    "eslint": "^2.8.0"
   }
 }

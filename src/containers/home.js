@@ -1,8 +1,10 @@
+import _ from 'lodash'
 import React, { Component } from 'react'
 import superagent from 'superagent'
 import url from 'url'
-import _ from 'lodash'
-import UserDevice from '../components/user-device'
+import {Page} from 'zooid-ui'
+
+import HomePage from '../components/home-page'
 
 class Home extends Component {
   state = {}
@@ -12,21 +14,39 @@ class Home extends Component {
   }
 
   componentDidMount(){
+    this.getCredentialsDevice()
     this.getUserDevices()
+  }
+
+  getCredentialsDevice(){
+    const {credentialsDeviceUrl, meshbluAuthBearer} = this.state
+    if (!credentialsDeviceUrl || !meshbluAuthBearer) return
+    superagent
+      .get(credentialsDeviceUrl)
+      .set('Authorization', `Bearer ${meshbluAuthBearer}`)
+      .end((error, res) => {
+        if (error) {
+          return this.setState({error, credentialsDevice: null})
+        }
+        this.setState({credentialsDevice: res.body})
+      })
   }
 
   getUserDevices = () => {
     const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
-    if(!credentialsDeviceUrl || !meshbluAuthBearer) return
+    if (!credentialsDeviceUrl || !meshbluAuthBearer) return
     superagent
       .get(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
-      .end((error, res) =>
-        this.setState({error, userDevices: res.body})
-      )
+      .end((error, res) => {
+        if (error) {
+          return this.setState({error, userDevices: null})
+        }
+        this.setState({userDevices: res.body})
+      })
   }
 
-  doIt = (event) => {
+  onOk = (event) => {
     const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
 
     superagent
@@ -43,24 +63,25 @@ class Home extends Component {
       .end( () => this.getUserDevices() )
   }
 
-
-
-  renderUserDevices =  (userDevices) => {
-    return _.map(userDevices, (userDevice) => {
-      return <UserDevice key={userDevice.uuid} device={userDevice} onDelete={this.onItemDelete} />
-    })
-  }
-
   render() {
-    const {userDevices} = this.state
+    const {credentialsDevice, error, userDevices} = this.state
+
+    if (error) {
+      return (
+        <Page>
+          <ErrorState description={error.message} />
+        </Page>
+      )
+    }
+
     return (
-      <div>
-        <h2>Home Page</h2>
-        <ul>
-          {this.renderUserDevices(userDevices)}
-        </ul>
-        <button onClick={this.doIt}>Do it</button>
-      </div>
+      <HomePage
+        credentialsDevice={credentialsDevice}
+        userDevices={userDevices}
+        onItemDelete={this.onItemDelete}
+        onCancel={this.onCancel}
+        onOk={this.onOk}
+        />
     )
   }
 }
