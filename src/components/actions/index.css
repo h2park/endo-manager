@@ -1,10 +1,27 @@
 :local .actions {
   flex: 0;
-  margin-top: 5em;
+  margin-top: 2em;
   display: flex;
-  justify-content: flex-end;
 }
 
-:local .actions Button {
-  margin-left: 1rem;
+@media (min-width: 601px) {
+  :local .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  :local .actions Button {
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :local .actions {
+    flex-direction: column-reverse;
+  }
+
+  :local .actions Button {
+    padding: 0.6em 1em;
+    text-align: center;
+  }
 }

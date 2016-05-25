@@ -1,0 +1,25 @@
+
+:local .explanation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+:local .explanation p {
+  max-width: 80%;
+  text-align: center;
+}
+
+@media (min-width: 601px) {
+  :local .explanation p {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  :local .explanation p {
+    max-width: 100%;
+  }
+}

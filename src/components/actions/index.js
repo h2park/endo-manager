@@ -11,7 +11,7 @@ const Actions = ({onCancel, onOk}) => {
   return (
     <div className={styles.actions}>
       <Button kind="no-style" size="large" onClick={onCancel}>Cancel</Button>
-      <Button kind="primary"  size="large" onClick={onOk}>Do it</Button>
+      <Button kind="primary"  size="large" onClick={onOk}>Add Yourself and Continue</Button>
     </div>
   )
 }

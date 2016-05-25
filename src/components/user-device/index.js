@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button} from 'zooid-ui'
+import DeleteIcon from 'react-icons/lib/md/delete'
 
 import styles from './index.css'
 
@@ -8,8 +9,10 @@ const UserDevice = ({device, onDelete}) => {
 
   return (
     <li className={styles.userDevice}>
-      <Button size="small" kind="danger" onClick={onClickDelete} className={styles.deleteButton}>&times;</Button>
-      <pre className={styles.uuid}>{device.uuid}</pre>
+      <Button kind="no-style" >
+        <i className={styles.deleteIcon}><DeleteIcon /></i>
+        <pre className={styles.uuid}>{device.uuid}</pre>
+      </Button>
     </li>
   )
 }
