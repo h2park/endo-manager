@@ -7,7 +7,6 @@ const propTypes = {
 }
 
 const SmallSpinner = ({show}) => {
-  console.log('SmallSpinner', show)
   if (!show) {
     return <div className={styles.smallSpinner} />
   }
