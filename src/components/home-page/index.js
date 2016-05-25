@@ -7,6 +7,14 @@ import Actions from '../actions'
 import CredentialsDeviceInformation from '../credentials-device-information'
 import UserDevices from '../user-devices'
 
+const propTypes = {
+  credentialsDeviceUrl: React.PropTypes.object,
+  userDevices: React.PropTypes.array,
+  onItemDelete: React.PropTypes.func.isRequired,
+  onCancel: React.PropTypes.func.isRequired,
+  onOk: React.PropTypes.func.isRequired,
+}
+
 const HomePage = ({credentialsDevice, userDevices, onItemDelete, onCancel, onOk}) => {
   return (
     <Page className={styles.page}>
@@ -16,5 +24,6 @@ const HomePage = ({credentialsDevice, userDevices, onItemDelete, onCancel, onOk}
     </Page>
   )
 }
+HomePage.propTypes = propTypes;
 
 export default HomePage;

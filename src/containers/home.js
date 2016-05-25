@@ -5,6 +5,7 @@ import url from 'url'
 import {Page} from 'zooid-ui'
 
 import HomePage from '../components/home-page'
+import LoadingSpinner from '../components/loading-spinner'
 
 class Home extends Component {
   state = {}
@@ -21,38 +22,35 @@ class Home extends Component {
   getCredentialsDevice(){
     const {credentialsDeviceUrl, meshbluAuthBearer} = this.state
     if (!credentialsDeviceUrl || !meshbluAuthBearer) return
+
+    this.setState({loadingCredentialsDevice: true})
+
     superagent
       .get(credentialsDeviceUrl)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
       .end((error, res) => {
         if (error) {
-          return this.setState({error, credentialsDevice: null})
+          return this.setState({error, credentialsDevice: null, loadingCredentialsDevice: false})
         }
-        this.setState({credentialsDevice: res.body})
+        this.setState({credentialsDevice: res.body, loadingCredentialsDevice: false})
       })
   }
 
   getUserDevices = () => {
     const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
     if (!credentialsDeviceUrl || !meshbluAuthBearer) return
+
+    this.setState({loadingUserDevices: true})
+
     superagent
       .get(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
       .end((error, res) => {
         if (error) {
-          return this.setState({error, userDevices: null})
+          return this.setState({error, userDevices: null, loadingUserDevices: false})
         }
-        this.setState({userDevices: res.body})
+        this.setState({userDevices: res.body, loadingUserDevices: false})
       })
-  }
-
-  onOk = (event) => {
-    const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
-
-    superagent
-      .post(`${credentialsDeviceUrl}/user-devices`)
-      .set('Authorization', `Bearer ${meshbluAuthBearer}`)
-      .end( () => this.getUserDevices() )
   }
 
   onItemDelete = ({uuid}) => {
@@ -63,13 +61,35 @@ class Home extends Component {
       .end( () => this.getUserDevices() )
   }
 
+  onCancel = (event) => {
+
+  }
+
+  onOk = (event) => {
+    console.log('onOk');
+    const {credentialsDeviceUrl, meshbluAuthBearer} = this.state
+
+    superagent
+      .post(`${credentialsDeviceUrl}/user-devices`)
+      .set('Authorization', `Bearer ${meshbluAuthBearer}`)
+      .end( () => this.getUserDevices() )
+  }
+
   render() {
-    const {credentialsDevice, error, userDevices} = this.state
+    const {credentialsDevice, error, loadingCredentialsDevice, loadingUserDevices, userDevices} = this.state
 
     if (error) {
       return (
         <Page>
           <ErrorState description={error.message} />
+        </Page>
+      )
+    }
+
+    if (loadingCredentialsDevice || loadingUserDevices;) {
+      return (
+        <Page>
+          <LoadingSpinner />
         </Page>
       )
     }
