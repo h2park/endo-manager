@@ -18,7 +18,7 @@ const UserDevices = ({userDevices, onItemDelete}) => {
   })
 
   return (
-    <ul>{userDevicesList}</ul>
+    <ul className={styles.userDevices}>{userDevicesList}</ul>
   )
 }
 

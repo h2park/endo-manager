@@ -1,12 +1,15 @@
 import React from 'react'
+import {Button} from 'zooid-ui'
+
+import styles from './index.css'
 
 const UserDevice = ({device, onDelete}) => {
   const onClickDelete = () => onDelete(device)
 
   return (
-    <li>
-      {device.uuid}
-      <button onClick={onClickDelete}>x</button>
+    <li className={styles.userDevice}>
+      <Button size="small" kind="danger" onClick={onClickDelete} className={styles.deleteButton}>&times;</Button>
+      <pre className={styles.uuid}>{device.uuid}</pre>
     </li>
   )
 }

@@ -1,4 +1,8 @@
 :local .page {
   background-color: #fff;
   padding: 1rem;
+
+  flex: 0;
+  display: flex;
+  flex-direction: column;
 }

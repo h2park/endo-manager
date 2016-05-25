@@ -8,11 +8,15 @@ import HomePage from '../components/home-page'
 import LoadingSpinner from '../components/loading-spinner'
 import NoAuthInformation from '../components/no-auth-information'
 
+import CREDENTIALS_DEVICE from '../data/credentials-device'
+import USER_DEVICES from '../data/user-devices'
+
 class Home extends Component {
   state = {}
   componentWillMount() {
-    const {credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
-    this.setState({credentialsDeviceUrl, meshbluAuthBearer})
+    // const {credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
+    // this.setState({credentialsDeviceUrl, meshbluAuthBearer})
+    this.setState({credentialsDevice: CREDENTIALS_DEVICE, userDevices: USER_DEVICES})
   }
 
   componentDidMount(){
@@ -82,9 +86,9 @@ class Home extends Component {
       return this.renderError()
     }
 
-    if (!this.state.credentialsDeviceUrl || !this.state.meshbluAuthBearer) {
-      return this.renderNoAuth()
-    }
+    // if (!this.state.credentialsDeviceUrl || !this.state.meshbluAuthBearer) {
+    //   return (<NoAuthInformation />)
+    // }
 
     if (this.state.loadingCredentialsDevice || this.state.loadingUserDevices) {
       return this.renderLoadingSpinner()
@@ -126,9 +130,6 @@ class Home extends Component {
   }
 
   renderNoAuth = () => {
-    return (
-      <NoAuthInformation />
-    )
   }
 }
 
