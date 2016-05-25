@@ -8,15 +8,11 @@ import HomePage from '../components/home-page'
 import LoadingSpinner from '../components/loading-spinner'
 import NoAuthInformation from '../components/no-auth-information'
 
-import CREDENTIALS_DEVICE from '../data/credentials-device'
-import USER_DEVICES from '../data/user-devices'
-
 class Home extends Component {
   state = {}
   componentWillMount() {
     const {credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
     this.setState({credentialsDeviceUrl, meshbluAuthBearer})
-    // this.setState({credentialsDevice: CREDENTIALS_DEVICE, userDevices: USER_DEVICES})
   }
 
   componentDidMount(){
@@ -34,8 +30,6 @@ class Home extends Component {
       .get(credentialsDeviceUrl)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
       .end((error, res) => {
-        console.log('getCredentialsDevice')
-
         if (error) {
           return this.setState({error, credentialsDevice: null, loadingCredentialsDevice: false})
         }
@@ -62,6 +56,9 @@ class Home extends Component {
 
   onItemDelete = ({uuid}) => {
     const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
+
+    this.setState({loadingUserDevices: true})
+
     superagent
       .delete(`${credentialsDeviceUrl}/user-devices/${uuid}`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
@@ -90,7 +87,7 @@ class Home extends Component {
       return (<NoAuthInformation />)
     }
 
-    if (this.state.loadingCredentialsDevice || this.state.loadingUserDevices) {
+    if (this.state.loadingCredentialsDevice) {
       return this.renderLoadingSpinner()
     }
 
@@ -108,12 +105,13 @@ class Home extends Component {
   }
 
   renderHomePage = () => {
-    const {credentialsDevice, userDevices} = this.state
+    const {credentialsDevice, userDevices, loadingUserDevices} = this.state
 
     return (
       <HomePage
         credentialsDevice={credentialsDevice}
         userDevices={userDevices}
+        loadingUserDevices={loadingUserDevices}
         onItemDelete={this.onItemDelete}
         onCancel={this.onCancel}
         onOk={this.onOk}

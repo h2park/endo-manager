@@ -1,0 +1,7 @@
+:local .smallSpinner {
+  flex: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 0.5rem;
+}
