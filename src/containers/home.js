@@ -14,9 +14,9 @@ import USER_DEVICES from '../data/user-devices'
 class Home extends Component {
   state = {}
   componentWillMount() {
-    // const {credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
-    // this.setState({credentialsDeviceUrl, meshbluAuthBearer})
-    this.setState({credentialsDevice: CREDENTIALS_DEVICE, userDevices: USER_DEVICES})
+    const {credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
+    this.setState({credentialsDeviceUrl, meshbluAuthBearer})
+    // this.setState({credentialsDevice: CREDENTIALS_DEVICE, userDevices: USER_DEVICES})
   }
 
   componentDidMount(){
@@ -86,9 +86,9 @@ class Home extends Component {
       return this.renderError()
     }
 
-    // if (!this.state.credentialsDeviceUrl || !this.state.meshbluAuthBearer) {
-    //   return (<NoAuthInformation />)
-    // }
+    if (!this.state.credentialsDeviceUrl || !this.state.meshbluAuthBearer) {
+      return (<NoAuthInformation />)
+    }
 
     if (this.state.loadingCredentialsDevice || this.state.loadingUserDevices) {
       return this.renderLoadingSpinner()
