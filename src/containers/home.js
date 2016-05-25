@@ -2,16 +2,17 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import superagent from 'superagent'
 import url from 'url'
-import {Page} from 'zooid-ui'
+import {Page, ErrorState} from 'zooid-ui'
 
 import HomePage from '../components/home-page'
 import LoadingSpinner from '../components/loading-spinner'
+import NoAuthInformation from '../components/no-auth-information'
 
 class Home extends Component {
   state = {}
   componentWillMount() {
-    const {credentialsDeviceUrl,meshbluAuthBearer} = url.parse(location.href, true).query
-    this.setState({credentialsDeviceUrl,meshbluAuthBearer})
+    const {credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
+    this.setState({credentialsDeviceUrl, meshbluAuthBearer})
   }
 
   componentDidMount(){
@@ -29,6 +30,8 @@ class Home extends Component {
       .get(credentialsDeviceUrl)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
       .end((error, res) => {
+        console.log('getCredentialsDevice')
+
         if (error) {
           return this.setState({error, credentialsDevice: null, loadingCredentialsDevice: false})
         }
@@ -66,7 +69,6 @@ class Home extends Component {
   }
 
   onOk = (event) => {
-    console.log('onOk');
     const {credentialsDeviceUrl, meshbluAuthBearer} = this.state
 
     superagent
@@ -75,24 +77,34 @@ class Home extends Component {
       .end( () => this.getUserDevices() )
   }
 
-  render() {
-    const {credentialsDevice, error, loadingCredentialsDevice, loadingUserDevices, userDevices} = this.state
-
-    if (error) {
-      return (
-        <Page>
-          <ErrorState description={error.message} />
-        </Page>
-      )
+  render = () => {
+    if (this.state.error) {
+      return this.renderError()
     }
 
-    if (loadingCredentialsDevice || loadingUserDevices;) {
-      return (
-        <Page>
-          <LoadingSpinner />
-        </Page>
-      )
+    if (!this.state.credentialsDeviceUrl || !this.state.meshbluAuthBearer) {
+      return this.renderNoAuth()
     }
+
+    if (this.state.loadingCredentialsDevice || this.state.loadingUserDevices) {
+      return this.renderLoadingSpinner()
+    }
+
+    return this.renderHomePage()
+  }
+
+  renderError = () => {
+    const {error} = this.state
+
+    return (
+      <Page>
+        <ErrorState description={error.message} />
+      </Page>
+    )
+  }
+
+  renderHomePage = () => {
+    const {credentialsDevice, userDevices} = this.state
 
     return (
       <HomePage
@@ -102,6 +114,20 @@ class Home extends Component {
         onCancel={this.onCancel}
         onOk={this.onOk}
         />
+    )
+  }
+
+  renderLoadingSpinner = () => {
+    return (
+      <Page>
+        <LoadingSpinner />
+      </Page>
+    )
+  }
+
+  renderNoAuth = () => {
+    return (
+      <NoAuthInformation />
     )
   }
 }

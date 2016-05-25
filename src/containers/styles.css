@@ -1,0 +1,19 @@
+html {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+body, div#app {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+}
+
+div#main-container {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-direction: column;
+}
