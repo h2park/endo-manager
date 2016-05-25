@@ -55,6 +55,8 @@ class Home extends Component {
   }
 
   onItemDelete = ({uuid}) => {
+    if (!window.confirm(`Are you sure you wish to remove ${uuid}? \n\nThis cannot be undone`)) return
+
     const {credentialsDeviceUrl,meshbluAuthBearer} = this.state
 
     this.setState({loadingUserDevices: true})
