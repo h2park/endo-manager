@@ -13,10 +13,12 @@ const CredentialsDeviceInformation = ({credentialsDevice, loadingUserDevices}) =
     return <hr />
   }
 
+  const title = `${credentialsDevice.name} (${credentialsDevice.username})`
+
   return (
     <section className={styles.container}>
       <img src={credentialsDevice.imageUrl} className={styles.logo} />
-      <PageHeader title={credentialsDevice.name} className={styles.header} />
+      <PageHeader title={title} className={styles.header} />
       <SmallSpinner show={loadingUserDevices} />
     </section>
   )

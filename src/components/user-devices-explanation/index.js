@@ -10,17 +10,16 @@ const explanation = ({credentialsDevice}) => {
 
 const UserDevicesExplanation = ({credentialsDevice}) => {
   if (!credentialsDevice) return (<div></div>)
-
-  const explanation = `
-      ${credentialsDevice.name} can be used by multiple devices. Below is a list of all device UUIDs that have been
-      authenticated with ${credentialsDevice.name} so far. Before we add you to the list of Authorized Devices, take a
-      moment and make sure there are no unexpected devices that have access to this ${credentialsDevice.name} account.
-      Any user that can authenticate as this ${credentialsDevice.name} account may remove members from this list.
-  `
-
+  
   return (
     <div className={styles.explanation}>
-      <p>{explanation}</p>
+      <p>
+        The <strong>{credentialsDevice.name}</strong> user account <strong>{credentialsDevice.username}</strong> can
+        be used by multiple devices. Below is a list of all device UUIDs that have been authenticated
+        with {credentialsDevice.name} so far. Any user that can authenticate as
+        the <strong>{credentialsDevice.username}</strong> <strong>{credentialsDevice.name}</strong> account may remove
+        members from this list.
+      </p>
     </div>
   )
 }
