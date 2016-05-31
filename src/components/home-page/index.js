@@ -5,8 +5,7 @@ import styles from './index.css'
 
 import Actions from '../actions'
 import CredentialsDeviceInformation from '../credentials-device-information'
-import UserDevices from '../user-devices'
-import UserDevicesExplanation from '../user-devices-explanation'
+import ManageUserDevices from '../manage-user-devices'
 
 const propTypes = {
   credentialsDevice: React.PropTypes.object,
@@ -21,8 +20,7 @@ const HomePage = ({credentialsDevice, loadingUserDevices, userDevices, onItemDel
   return (
     <Page className={styles.page}>
       <CredentialsDeviceInformation credentialsDevice={credentialsDevice} loadingUserDevices={loadingUserDevices} />
-      <UserDevicesExplanation credentialsDevice={credentialsDevice} />
-      <UserDevices userDevices={userDevices} onItemDelete={onItemDelete} />
+      <ManageUserDevices credentialsDevice={credentialsDevice} userDevices={userDevices} onItemDelete={onItemDelete} />
       <Actions onCancel={onCancel} onOk={onOk} />
     </Page>
   )

@@ -74,6 +74,8 @@ class Home extends Component {
   onOk = (event) => {
     const {credentialsDeviceUrl, meshbluAuthBearer} = this.state
 
+    this.setState({loadingUserDevices: true})
+
     superagent
       .post(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
