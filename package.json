@@ -1,6 +1,6 @@
 {
   "name": "endo-manager",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "endo-manager",
   "main": "index.js",
   "scripts": {
