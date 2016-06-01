@@ -68,7 +68,14 @@ class Home extends Component {
   }
 
   onCancel = (event) => {
-
+    const {appOctobluHost} = this.state
+    const {protocol, hostname, port} = url.parse(appOctobluHost)
+    window.location = url.format({
+      protocol: protocol,
+      hostname: hostname,
+      port: port,
+      pathname: '/things/my',
+    })
   }
 
   onOk = (event) => {
@@ -79,7 +86,7 @@ class Home extends Component {
     superagent
       .post(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
-      .end((error, device) => {
+      .end((error, response) => {
         if(error) {
           return this.setState({error})
         }
@@ -88,7 +95,7 @@ class Home extends Component {
           protocol: protocol,
           hostname: hostname,
           port: port,
-          pathname: `/device/${device.uuid}`,
+          pathname: `/device/${response.body.uuid}`,
         })
       })
   }
