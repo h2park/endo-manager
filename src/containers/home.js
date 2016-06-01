@@ -11,8 +11,8 @@ import NoAuthInformation from '../components/no-auth-information'
 class Home extends Component {
   state = {}
   componentWillMount() {
-    const {credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
-    this.setState({credentialsDeviceUrl, meshbluAuthBearer})
+    const {appOctobluHost, credentialsDeviceUrl, meshbluAuthBearer} = url.parse(location.href, true).query
+    this.setState({appOctobluHost, credentialsDeviceUrl, meshbluAuthBearer})
   }
 
   componentDidMount(){
@@ -72,14 +72,25 @@ class Home extends Component {
   }
 
   onOk = (event) => {
-    const {credentialsDeviceUrl, meshbluAuthBearer} = this.state
+    const {appOctobluHost, credentialsDeviceUrl, meshbluAuthBearer} = this.state
 
     this.setState({loadingUserDevices: true})
 
     superagent
       .post(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
-      .end( () => this.getUserDevices() )
+      .end((error, device) => {
+        if(error) {
+          return this.setState({error})
+        }
+        let {protocol, hostname, port} = url.parse(appOctobluHost)
+        window.location = url.format({
+          protocol: protocol,
+          hostname: hostname,
+          port: port,
+          pathname: `/device/${device.uuid}`,
+        })
+      })
   }
 
   render = () => {
