@@ -9,6 +9,7 @@ const propTypes = {
 }
 
 const CredentialsDeviceInformation = ({credentialsDevice, loadingUserDevices}) => {
+  // loadingUserDevices = true
   if (!credentialsDevice) {
     return <hr />
   }

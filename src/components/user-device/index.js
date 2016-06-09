@@ -13,10 +13,10 @@ const UserDevice = ({device, onDelete}) => {
 
   return (
     <li className={styles.userDevice}>
-      <Button kind="no-style" onClick={onClickDelete} >
+      <a className={styles.userDeviceButton} href onClick={onClickDelete} >
         <i className={styles.deleteIcon}><DeleteIcon /></i>
-        <pre className={styles.uuid}>{device.uuid}</pre>
-      </Button>
+        <span className={styles.uuid}>{device.uuid}</span>
+      </a>
     </li>
   )
 }
