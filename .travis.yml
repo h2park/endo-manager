@@ -26,3 +26,14 @@ deploy:
   local-dir: dist
   on:
     tags: true
+- provider: s3
+  access_key_id: AKIAJH2D5IPIRHYJT5IA
+  secret_access_key:
+    secure: "xN9Ru9Fed3RZDhSIzbLbHnFWby3YvmiTvAcNAyB2kXTPm3Ps/oDDZehidVztHq8JfrhrL/5AgvWlUOLueDNGZY0+V3Ll0z0ihZ77DvWjDVq98iNN+4zxm0q9sReh71XTYrJyMdzgMNqbItVzy2fBWxvtIAMXALfRTGAIzNUMZ+bqcRDBSPDJ8DZD4/3YvOvOJRLUasNHrZ8zIORG1XWaZx8ZBKTiLy65frn7q6jz2ZiYktjlkLrBpO44itG3awHy75PKuO4kUHjGNfWqBz1FgbGGJpivkk43FWvFTnSLbqNSK5nndLyqYcWUze98k8S01lVMBw+aGkLn4aOi876hX575ZNdwCQJOADbWeVcOQ3w5WjeOLnVGfz9TXhxOECPD4y3EHxwVzN1n7xm3OtO3RBgO+tOPTXEIxNZCQ3tFtbJ4o0opEDH+nn1e8jlMD2aEWFieiMoX71IOkoRWWeGhhgR/Y6RrI7iAeW5Qs96qlEHlmNU0QrLnwZ1qObAU/ElxV1WT5tFcdnVMyLKcwqkBybQejN1GNhCBSJlcul0+9Em8dikO5bVP/fl/lsnGJRY5IDJUdSBrDMTMLD2tvTmhE8JtvgzUEG5jcbJMI0nNVbHzrSV37qH06Hq9guQW/xo1vF4a36qRRaGNup6tClFSKqLFYw1jeOS6CqCgnAjBI7s="
+  bucket: endo-manager-dev.octoblu.com
+  region: us-west-2
+  skip_cleanup: true
+  detect_encoding: true
+  local-dir: dist
+  on:
+    tags: true
