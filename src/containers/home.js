@@ -44,7 +44,7 @@ class Home extends Component {
     this.setState({loadingUserDevices: true})
 
     superagent
-      .get(`/credentials/${credentialsDeviceUrl}/user-devices`)
+      .get(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
       .end((error, res) => {
         if (error) {
@@ -62,7 +62,7 @@ class Home extends Component {
     this.setState({loadingUserDevices: true})
 
     superagent
-      .delete(`/credentials/${credentialsDeviceUrl}/user-devices/${uuid}`)
+      .delete(`${credentialsDeviceUrl}/user-devices/${uuid}`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
       .end( () => this.getUserDevices() )
   }
@@ -84,7 +84,7 @@ class Home extends Component {
     this.setState({loadingUserDevices: true})
 
     superagent
-      .post(`/credentials/${credentialsDeviceUrl}/user-devices`)
+      .post(`${credentialsDeviceUrl}/user-devices`)
       .set('Authorization', `Bearer ${meshbluAuthBearer}`)
       .end((error, response) => {
         if(error) {
