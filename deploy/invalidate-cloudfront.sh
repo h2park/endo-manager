@@ -19,6 +19,9 @@ create_invalidation(){
   aws cloudfront create-invalidation \
     --distribution-id E1WFIRDB3H5M3O \
     --invalidation-batch "{\"Paths\": {\"Quantity\": 3, \"Items\": [\"/index.html\", \"/bundle.js\", \"/bundle.js.map\"]}, \"CallerReference\": \"travis-$git_tag\"}"
+  aws cloudfront create-invalidation \
+    --distribution-id E2OK9I6X1D2LG4 \
+    --invalidation-batch "{\"Paths\": {\"Quantity\": 3, \"Items\": [\"/index.html\", \"/bundle.js\", \"/bundle.js.map\"]}, \"CallerReference\": \"travis-$git_tag\"}"
 }
 
 main(){
