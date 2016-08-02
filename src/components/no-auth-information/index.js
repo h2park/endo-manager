@@ -1,4 +1,5 @@
 import React from 'react'
+import ErrorState from 'zooid-error-state'
 import {Button, Page} from 'zooid-ui'
 
 import styles from './index.css'
@@ -7,18 +8,13 @@ const propTypes = {}
 
 const NoAuthInformation = () => {
   return (
-    <div className={styles.page}>
-      <Page>
-        <h1>Authentication information could not be verified</h1>
-        <p className={styles.content}>
-          Please initiate Authentication from the Thing details page
-          for Thing you wish to manage.
-        </p>
-        <div className={styles.actions}>
-          <Button kind="primary"  size="large" href="https://app.octoblu.com/configure">Go to My Things</Button>
-        </div>
-      </Page>
-    </div>
+    <Page className={styles.page}>
+      <ErrorState
+        title="Authentication information could not be verified"
+        description="Please initiate Authentication from the Thing details page for Thing you wish to manage."
+        href="https://app.octoblu.com/configure"
+        buttonText="Go to My Things" />
+    </Page>
   )
 }
 

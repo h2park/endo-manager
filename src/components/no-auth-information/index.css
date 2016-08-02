@@ -1,26 +1,11 @@
 :local .page {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-:local .page main {
   background-color: #fff;
-  padding: 1rem;
+  padding: 4rem;
 
   display: flex;
   flex-direction: column;
-  flex: 0;
 }
 
-:local .content {
-  padding: 4rem 0;
-  font-size: 1.5em;
-  text-align: center;
-}
-
-:local .actions {
-  flex: 0;
-  display: flex;
-  justify-content: flex-end;
+:local .page a {
+  margin-top: 2em;
 }
