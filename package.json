@@ -9,7 +9,7 @@
     "start": "node scripts/start.js",
     "lint": "eslint src",
     "lint:fix ": "eslint src --fix",
-    "test": "echo 'No tests' && exit 0",
+    "test": "istanbul cover _mocha -- -R spec --require coffee-coverage/register-istanbul && mocha --reporter json > coverage/mocha.json",
     "test:watch": "npm run test -- --watch --reporter mocha-multi --reporter-options spec=-,mocha-osx-reporter=-"
   },
   "keywords": [
@@ -49,6 +49,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "coffee-coverage": "^1.0.1",
     "cross-env": "^2.0.0",
     "css-loader": "^0.24.0",
     "eslint-plugin-babel": "^3.1.0",
