@@ -40,3 +40,4 @@ node_modules
 
 # travis local assets
 dpl_*
+.nyc_output

@@ -9,8 +9,10 @@
     "start": "node scripts/start.js",
     "lint": "eslint src",
     "lint:fix ": "eslint src --fix",
-    "test": "istanbul cover _mocha -- -R spec --require coffee-coverage/register-istanbul && mocha --reporter json > coverage/mocha.json",
-    "test:watch": "npm run test -- --watch --reporter mocha-multi --reporter-options spec=-,mocha-osx-reporter=-"
+    "test": "mocha",
+    "test:watch": "mocha -w -R mocha-multi --reporter-options spec=-,mocha-osx-reporter=-",
+    "coverage": "nyc npm test",
+    "mocha:json": "env NPM_ENV=test mocha --reporter json > coverage/mocha.json"
   },
   "keywords": [
     "zooid",
@@ -49,7 +51,6 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
-    "coffee-coverage": "^1.0.1",
     "cross-env": "^2.0.0",
     "css-loader": "^0.24.0",
     "eslint-plugin-babel": "^3.1.0",
@@ -60,6 +61,9 @@
     "gzip-size": "^3.0.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
+    "mocha-multi": "^0.9.1",
+    "mocha-osx-reporter": "^0.1.2",
+    "nyc": "^8.3.0",
     "postcss-loader": "^0.11.0",
     "postcss-scss": "^0.2.0",
     "precss": "^1.4.0",
@@ -73,5 +77,16 @@
   },
   "optionalDependencies": {
     "eslint": "^2.8.0"
+  },
+  "nyc": {
+    "cache": true,
+    "reporter": [
+      "text-summary",
+      "lcov",
+      "json"
+    ],
+    "extension": [
+      ".coffee"
+    ]
   }
 }
