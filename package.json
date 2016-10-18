@@ -1,6 +1,6 @@
 {
   "name": "endo-manager",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "endo-manager",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "test": "mocha",
     "test:watch": "mocha -w -R mocha-multi --reporter-options spec=-,mocha-osx-reporter=-",
     "coverage": "nyc npm test",
-    "mocha:json": "env NPM_ENV=test mocha --reporter json > coverage/mocha.json"
+    "mocha:json": "mocha --reporter json > coverage/mocha.json"
   },
   "keywords": [
     "zooid",
@@ -51,8 +51,12 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "chai-subset": "^1.3.0",
+    "coffee-script": "^1.11.1",
     "cross-env": "^2.0.0",
     "css-loader": "^0.24.0",
+    "env-test": "^1.0.0",
     "eslint-plugin-babel": "^3.1.0",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.4",
@@ -61,20 +65,22 @@
     "gzip-size": "^3.0.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.22.0",
+    "mocha": "^2.5.3",
     "mocha-multi": "^0.9.1",
     "mocha-osx-reporter": "^0.1.2",
-    "nyc": "^8.3.0",
+    "nyc": "^8.3.1",
     "postcss-loader": "^0.11.0",
     "postcss-scss": "^0.2.0",
     "precss": "^1.4.0",
     "recursive-readdir": "^2.0.0",
     "rimraf": "^2.5.2",
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.0",
     "webpack-dev-server": "^1.15.0",
-    "webpack-hot-middleware": "^2.10.0",
-    "mocha": "^2.5.3"
+    "webpack-hot-middleware": "^2.10.0"
   },
   "optionalDependencies": {
     "eslint": "^2.8.0"
