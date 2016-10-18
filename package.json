@@ -1,6 +1,6 @@
 {
   "name": "endo-manager",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "endo-manager",
   "main": "index.js",
   "scripts": {
@@ -73,7 +73,8 @@
     "webpack": "^1.12.14",
     "webpack-dev-middleware": "^1.6.0",
     "webpack-dev-server": "^1.15.0",
-    "webpack-hot-middleware": "^2.10.0"
+    "webpack-hot-middleware": "^2.10.0",
+    "mocha": "^2.5.3"
   },
   "optionalDependencies": {
     "eslint": "^2.8.0"
