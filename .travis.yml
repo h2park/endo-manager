@@ -6,6 +6,8 @@ branches:
     - '/^v[0-9]/'
 env:
   global: 'CDN=https://endo-manager-static.octoblu.com'
+before_script:
+  - npm install
 before_deploy:
   - npm run build
   - export PKG_VERSION="$(node -e 'console.log(require("./package.json").version)')"
