@@ -1,6 +1,6 @@
 {
   "name": "endo-manager",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "endo-manager",
   "main": "index.js",
   "scripts": {
@@ -41,7 +41,7 @@
     "superagent": "^2.2.0",
     "url": "^0.11.0",
     "zooid-error-state": "^1.2.0",
-    "zooid-ui": "^8.0.0"
+    "zooid-ui": "^8.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.4",
