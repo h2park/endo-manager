@@ -1,17 +1,18 @@
-import React, { Component } from 'react'
-import 'zooid-ui/dist/style.css'
-import './styles.css'
-import {AppBar} from 'zooid-ui'
+import React, { PropTypes } from 'react'
+import Main from '../components/main'
 
-class App extends Component {
+const propTypes = {
+  children: PropTypes.node,
+}
+
+export default class App extends React.Component {
   render() {
     return (
-      <div id="main-container">
-        <AppBar title="Credentials Manager" />
+      <Main>
         {this.props.children}
-      </div>
+      </Main>
     )
   }
 }
 
-export default App
+App.propTypes = propTypes
