@@ -1,36 +1,11 @@
 language: node_js
 node_js:
-  - '5'
-branches:
-  only:
-    - '/^v[0-9]/'
-env:
-  global: 'CDN=https://endo-manager-static.octoblu.com'
-before_script:
-  - npm install
-before_deploy:
-  - npm run build
-  - export PKG_VERSION="$(node -e 'console.log(require("./package.json").version)')"
-  - 'if [ -z "$PKG_VERSION" ]; then echo ''Missing PKG_VERSION env'' && exit 1; fi'
-  - mkdir -p dpl_assets/v$PKG_VERSION
-  - cp -r dist/* dpl_assets/v$PKG_VERSION
-deploy:
-  - provider: s3
-    access_key_id: AKIAJH2D5IPIRHYJT5IA
-    secret_access_key:
-      secure: >-
-        xN9Ru9Fed3RZDhSIzbLbHnFWby3YvmiTvAcNAyB2kXTPm3Ps/oDDZehidVztHq8JfrhrL/5AgvWlUOLueDNGZY0+V3Ll0z0ihZ77DvWjDVq98iNN+4zxm0q9sReh71XTYrJyMdzgMNqbItVzy2fBWxvtIAMXALfRTGAIzNUMZ+bqcRDBSPDJ8DZD4/3YvOvOJRLUasNHrZ8zIORG1XWaZx8ZBKTiLy65frn7q6jz2ZiYktjlkLrBpO44itG3awHy75PKuO4kUHjGNfWqBz1FgbGGJpivkk43FWvFTnSLbqNSK5nndLyqYcWUze98k8S01lVMBw+aGkLn4aOi876hX575ZNdwCQJOADbWeVcOQ3w5WjeOLnVGfz9TXhxOECPD4y3EHxwVzN1n7xm3OtO3RBgO+tOPTXEIxNZCQ3tFtbJ4o0opEDH+nn1e8jlMD2aEWFieiMoX71IOkoRWWeGhhgR/Y6RrI7iAeW5Qs96qlEHlmNU0QrLnwZ1qObAU/ElxV1WT5tFcdnVMyLKcwqkBybQejN1GNhCBSJlcul0+9Em8dikO5bVP/fl/lsnGJRY5IDJUdSBrDMTMLD2tvTmhE8JtvgzUEG5jcbJMI0nNVbHzrSV37qH06Hq9guQW/xo1vF4a36qRRaGNup6tClFSKqLFYw1jeOS6CqCgnAjBI7s=
-    bucket: endo-manager-static.octoblu.com
-    local_dir: dpl_assets
-    skip_cleanup: true
-    region: us-west-2
-    'on':
-      tags: true
-notifications:
-  webhooks:
-    - 'https://beekeeper.octoblu.com/webhooks/travis:ci'
+  - '7'
 after_success:
   - npm run coverage
   - 'npm run mocha:json'
   - 'bash <(curl -s https://codecov.io/bash)'
   - 'bash <(curl -s https://codecov.octoblu.com/bash)'
+notifications:
+  webhooks:
+    - 'https://beekeeper.octoblu.com/webhooks/travis:ci'
