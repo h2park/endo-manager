@@ -25,6 +25,6 @@ const HomePage = ({credentialsDevice, loadingUserDevices, userDevices, onItemDel
     </Page>
   )
 }
-HomePage.propTypes = propTypes;
+HomePage.propTypes = propTypes
 
-export default HomePage;
+export default HomePage

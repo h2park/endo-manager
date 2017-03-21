@@ -15,6 +15,6 @@ const Actions = ({onCancel, onOk}) => {
     </div>
   )
 }
-Actions.propTypes = propTypes;
+Actions.propTypes = propTypes
 
-export default Actions;
+export default Actions

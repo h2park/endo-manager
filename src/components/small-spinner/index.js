@@ -18,6 +18,6 @@ const SmallSpinner = ({show}) => {
   )
 }
 
-SmallSpinner.propTypes = propTypes;
+SmallSpinner.propTypes = propTypes
 
 export default SmallSpinner

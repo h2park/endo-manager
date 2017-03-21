@@ -4,4 +4,4 @@ const USER_DEVICES = [{
   uuid: 'b598b969-6950-4a67-82a2-b931393b58c1',
 }]
 
-export default USER_DEVICES;
+export default USER_DEVICES

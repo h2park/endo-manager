@@ -3,4 +3,4 @@ const CREDENTIALS_DEVICE = {
   name: 'Github',
 }
 
-export default CREDENTIALS_DEVICE;
+export default CREDENTIALS_DEVICE

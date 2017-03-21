@@ -21,4 +21,4 @@ const UserDevice = ({device, onDelete}) => {
   )
 }
 
-export default UserDevice;
+export default UserDevice

@@ -23,6 +23,6 @@ const UserDevicesExplanation = ({credentialsDevice}) => {
     </div>
   )
 }
-UserDevicesExplanation.propTypes = propTypes;
+UserDevicesExplanation.propTypes = propTypes
 
-export default UserDevicesExplanation;
+export default UserDevicesExplanation

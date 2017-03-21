@@ -25,6 +25,6 @@ const CredentialsDeviceInformation = ({credentialsDevice, loadingUserDevices}) =
   )
 }
 
-CredentialsDeviceInformation.propTypes = propTypes;
+CredentialsDeviceInformation.propTypes = propTypes
 
 export default CredentialsDeviceInformation
